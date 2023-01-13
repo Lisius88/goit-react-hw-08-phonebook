@@ -1,9 +1,18 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'components/redux/operations';
-import { Button, FormContent, Input, Label } from './Form.styled';
+import { Button, FormContent, Input, Label, Validation } from './Form.styled';
 import toast from 'react-hot-toast';
 import { Spinner } from 'components/Loader/Spinner';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+const schema = yup
+  .object({
+    name: yup.string().required('Name is required'),
+    number: yup.string().required('Number is required'),
+  })
+  .required();
 
 export const Form = () => {
   const dispatch = useDispatch();
@@ -21,7 +30,9 @@ export const Form = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const submit = data => {
     if (listContainsContact(data)) {
@@ -34,27 +45,14 @@ export const Form = () => {
   return (
     <FormContent onSubmit={handleSubmit(submit)}>
       <Label>
-        Name{' '}
-        <Input
-          {...register('name', { required: true })}
-          placeholder="Eddie van Halen"
-        />
+        Name <Input {...register('name')} placeholder="Eddie van Halen" />
+        <Validation>{errors.name?.message}</Validation>
       </Label>
       <Label>
-        Number{' '}
-        <Input
-          {...register('number', {
-            required: true,
-            minLength: {
-              value: 9,
-              message: 'Number must have 9 length',
-            },
-          })}
-          placeholder="+38 (067) 1234567"
-        />
+        Number <Input {...register('number')} placeholder="+38 (067) 1234567" />
+        <Validation>{errors.number?.message}</Validation>
       </Label>
 
-      <p>{errors.number?.message}</p>
       {(isLoading && <Button type="submit">{<Spinner />}</Button>) || (
         <Button type="submit">Save</Button>
       )}

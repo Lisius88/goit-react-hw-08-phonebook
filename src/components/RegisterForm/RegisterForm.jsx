@@ -1,18 +1,48 @@
-import { useDispatch } from 'react-redux';
-import { register } from '../redux/Auth/operations';
-import { Button, FormContent, Input, Label } from '../Form/Form.styled';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  Button,
+  FormContent,
+  Input,
+  Label,
+  Validation,
+} from '../Form/Form.styled';
+import { registration } from '../redux/Auth/operations';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { selectIsLoadingUser } from 'components/redux/Auth/selectors';
+import { Spinner } from 'components/Loader/Spinner';
+
+const schema = yup
+  .object({
+    name: yup.string().required('Username is required'),
+    email: yup
+      .string()
+      .email('Plaese, enter a valid email')
+      .required('Email is required'),
+    password: yup.string().required('Password is required'),
+  })
+  .required();
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
+  const userLoading = useSelector(selectIsLoadingUser);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const form = e.currentTarget;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const submit = data => {
+    console.log(data);
     dispatch(
-      register({
-        name: form.elements.name.value,
-        email: form.elements.email.value,
-        password: form.elements.password.value,
+      registration({
+        name: data.name,
+        email: data.email,
+        password: data.password,
       })
     );
   };
@@ -25,26 +55,27 @@ export const RegisterForm = () => {
         marginRight: 'auto',
       }}
     >
-      <FormContent onSubmit={handleSubmit} autoComplete="off">
+      <FormContent onSubmit={handleSubmit(submit)}>
         <Label>
-          Username
-          <Input type="text" name="name" placeholder="Jacob Tall" required />
+          Username <Input {...register('name')} placeholder="Ace Ventura" />
+          <Validation>{errors.name?.message}</Validation>
         </Label>
         <Label>
-          Email
+          Email <Input {...register('email')} placeholder="qwerty@gmail.com" />
+          <Validation>{errors.email?.message}</Validation>
+        </Label>
+        <Label>
+          Password{' '}
           <Input
-            type="email"
-            name="email"
-            pattern="^([^ ]+@[^ ]+\.[a-z]{2,6}|)$"
-            placeholder="qwerty@gmail.com"
-            required
+            type="password"
+            {...register('password')}
+            placeholder="Friday_13"
           />
+          <Validation>{errors.password?.message}</Validation>
         </Label>
-        <Label>
-          Password
-          <Input type="password" name="password" required minLength={8} />
-        </Label>
-        <Button type="submit">Register</Button>
+        {(userLoading && <Button type="submit">{<Spinner />}</Button>) || (
+          <Button type="submit">Log In</Button>
+        )}
       </FormContent>
     </div>
   );

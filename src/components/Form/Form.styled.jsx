@@ -40,3 +40,8 @@ export const Input = styled.input`
 export const Label = styled.label`
   font-size: 20px;
 `;
+
+export const Validation = styled.p`
+  font-size: 14px;
+  margin-bottom: 8px;
+`;

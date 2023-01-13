@@ -1,17 +1,46 @@
-import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  Button,
+  FormContent,
+  Input,
+  Label,
+  Validation,
+} from '../Form/Form.styled';
 import { logIn } from '../redux/Auth/operations';
-import { Button, FormContent, Input, Label } from '../Form/Form.styled';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { selectIsLoadingUser } from 'components/redux/Auth/selectors';
+import { Spinner } from 'components/Loader/Spinner';
+
+const schema = yup
+  .object({
+    email: yup
+      .string()
+      .email('Plaese, enter a valid email')
+      .required('Email is required'),
+    password: yup.string().required('Password is required'),
+  })
+  .required();
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
+  const userLoading = useSelector(selectIsLoadingUser);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const form = e.currentTarget;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const submit = data => {
+    console.log(data);
     dispatch(
       logIn({
-        email: form.elements.email.value,
-        password: form.elements.password.value,
+        email: data.email,
+        password: data.password,
       })
     );
   };
@@ -24,16 +53,25 @@ export const LoginForm = () => {
         marginRight: 'auto',
       }}
     >
-      <FormContent onSubmit={handleSubmit} autoComplete="off">
+      <FormContent onSubmit={handleSubmit(submit)}>
         <Label>
-          Email
-          <Input type="email" name="email" />
+          Email <Input {...register('email')} placeholder="qwerty@gmail.com" />
+          <Validation>{errors.email?.message}</Validation>
         </Label>
         <Label>
-          Password
-          <Input type="password" name="password" />
+          Password{' '}
+          <Input
+            type="password"
+            {...register('password')}
+            placeholder="Friday_13"
+          />
+          <Validation>{errors.password?.message}</Validation>
         </Label>
-        <Button type="submit">Log In</Button>
+
+        <p>{errors.number?.message}</p>
+        {(userLoading && <Button type="submit">{<Spinner />}</Button>) || (
+          <Button type="submit">Log In</Button>
+        )}
       </FormContent>
     </div>
   );
