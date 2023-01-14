@@ -20,7 +20,13 @@ const schema = yup
       .string()
       .email('Plaese, enter a valid email')
       .required('Email is required'),
-    password: yup.string().required('Password is required'),
+    password: yup
+      .string()
+      .matches(
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
+        'Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number and 8 characters'
+      )
+      .required('Password is required'),
   })
   .required();
 
@@ -69,12 +75,12 @@ export const RegisterForm = () => {
           <Input
             type="password"
             {...register('password')}
-            placeholder="Friday_13"
+            placeholder="Friday13"
           />
           <Validation>{errors.password?.message}</Validation>
         </Label>
         {(userLoading && <Button type="submit">{<Spinner />}</Button>) || (
-          <Button type="submit">Log In</Button>
+          <Button type="submit">Register</Button>
         )}
       </FormContent>
     </div>

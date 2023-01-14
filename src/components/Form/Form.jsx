@@ -10,7 +10,13 @@ import * as yup from 'yup';
 const schema = yup
   .object({
     name: yup.string().required('Name is required'),
-    number: yup.string().required('Number is required'),
+    number: yup
+      .string()
+      .matches(
+        /^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$/,
+        'Plaese, enter a valid number'
+      )
+      .required('Number is required'),
   })
   .required();
 

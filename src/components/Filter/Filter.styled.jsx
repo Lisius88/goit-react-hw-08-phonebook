@@ -6,6 +6,7 @@ export const Filterlabel = styled.div`
   width: 505px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 30px;
 `;
 
 export const Input = styled.input`

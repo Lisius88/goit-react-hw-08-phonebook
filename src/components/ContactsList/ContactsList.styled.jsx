@@ -5,14 +5,14 @@ export const List = styled.ul`
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  max-width: 1100px;
+  /* max-width: 1100px; */
   margin-bottom: 30px;
 `;
 
 export const Item = styled.li`
   padding: 0;
   margin: 0;
-  width: 300px;
+  width: 495px;
   margin-left: 15px;
   display: flex;
   justify-content: space-between;

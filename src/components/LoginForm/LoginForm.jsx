@@ -63,7 +63,7 @@ export const LoginForm = () => {
           <Input
             type="password"
             {...register('password')}
-            placeholder="Friday_13"
+            placeholder="Friday13"
           />
           <Validation>{errors.password?.message}</Validation>
         </Label>
