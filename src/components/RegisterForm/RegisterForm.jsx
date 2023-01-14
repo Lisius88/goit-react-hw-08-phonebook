@@ -12,6 +12,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { selectIsLoadingUser } from 'components/redux/Auth/selectors';
 import { Spinner } from 'components/Loader/Spinner';
+import { LoginStyledContainer } from 'components/LoginForm/LoginForm.styled';
 
 const schema = yup
   .object({
@@ -54,13 +55,7 @@ export const RegisterForm = () => {
   };
 
   return (
-    <div
-      style={{
-        width: '505px',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-      }}
-    >
+    <LoginStyledContainer>
       <FormContent onSubmit={handleSubmit(submit)}>
         <Label>
           Username <Input {...register('name')} placeholder="Ace Ventura" />
@@ -83,6 +78,6 @@ export const RegisterForm = () => {
           <Button type="submit">Register</Button>
         )}
       </FormContent>
-    </div>
+    </LoginStyledContainer>
   );
 };

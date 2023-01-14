@@ -28,9 +28,14 @@ export const Button = styled.button`
 `;
 
 export const FormContent = styled.form`
-  width: 505px;
-  margin-left: 15px;
+  width: 260px;
+  margin-left: auto;
   margin-right: auto;
+
+  @media (min-width: 600px) {
+    width: 505px;
+    margin-left: 15px;
+  }
 `;
 
 export const Input = styled.input`

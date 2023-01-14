@@ -3,17 +3,20 @@ import styled from '@emotion/styled';
 export const List = styled.ul`
   margin-top: 20px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   flex-wrap: wrap;
-  /* max-width: 1100px; */
   margin-bottom: 30px;
+
+  @media (min-width: 600px) {
+    justify-content: flex-start;
+  }
 `;
 
 export const Item = styled.li`
   padding: 0;
   margin: 0;
-  width: 495px;
-  margin-left: 15px;
+  width: 245px;
+  margin-left: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -22,6 +25,11 @@ export const Item = styled.li`
   border-radius: 5px;
   margin-top: 15px;
   padding: 5px;
+
+  @media (min-width: 600px) {
+    width: 495px;
+    margin-left: 15px;
+  }
 `;
 
 export const Button = styled.button`

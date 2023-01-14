@@ -26,8 +26,13 @@ export const Button = styled.button`
 `;
 
 export const UserDescr = styled.p`
-  font-size: 20px;
-  color: #ffffffff;
+  display: none;
+
+  @media (min-width: 600px) {
+    display: inline-block;
+    font-size: 20px;
+    color: #ffffffff;
+  }
 `;
 
 export const UserMenuStyled = styled.div`
