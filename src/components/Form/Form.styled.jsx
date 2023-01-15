@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 
 export const Button = styled.button`
+  margin-left: auto;
+  margin-right: auto;
   width: 100px;
   height: 40px;
   margin-top: 10px;
@@ -25,10 +27,15 @@ export const Button = styled.button`
   :hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 16px 20px rgba(0, 0, 0, 0.2);
   }
+
+  @media (min-width: 600px) {
+    margin-left: 0;
+    margin-right: 0;
+  }
 `;
 
 export const FormContent = styled.form`
-  width: 260px;
+  width: 310px;
   margin-left: auto;
   margin-right: auto;
 

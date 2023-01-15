@@ -42,7 +42,7 @@ export const ContactsList = () => {
             {' '}
             <p style={{ fontSize: '18px' }}>{name}</p>
             <p>
-              <Numb href="tel:">{number}</Numb>
+              <Numb href={`tel:${number}`}>{number}</Numb>
             </p>
           </div>
           <Button onClick={onDeleteClick} type="button" id={id} name={name}>

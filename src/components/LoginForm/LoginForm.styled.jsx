@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const LoginStyledContainer = styled.div`
-  width: 260px;
+  width: 310px;
   margin-left: auto;
   margin-right: auto;
 

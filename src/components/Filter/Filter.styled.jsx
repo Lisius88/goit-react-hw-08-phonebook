@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const Filterlabel = styled.div`
   display: block;
   margin-top: 10px;
-  width: 260px;
+  width: 310px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 30px;
