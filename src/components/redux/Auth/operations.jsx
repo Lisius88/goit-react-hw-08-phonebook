@@ -29,7 +29,7 @@ export const registration = createAsyncThunk(
       return res.data;
     } catch (error) {
       toast.error(
-        'Sorry, anything is mot OK:( Try again or try another email!'
+        'Sorry, anything is not OK:( Try again or try another email!'
       );
       return thunkAPI.rejectWithValue(error.message);
     }
