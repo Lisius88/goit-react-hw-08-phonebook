@@ -4,7 +4,7 @@ import { Filter } from '../components/Filter/Filter';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from '../components/redux/operations';
 import { MainContent, Title, Flex } from '../components/App.styled';
-import { Notif } from 'components/Notif/Nitif';
+import { Notif } from 'components/Notif/Notif';
 // import { Loader } from '../components/Loader/Loader';
 import { useEffect } from 'react';
 

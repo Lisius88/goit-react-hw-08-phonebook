@@ -29,7 +29,7 @@ export const ContactsList = () => {
   if (!contactsListEmpty && filteredContacts.length === 0) {
     return (
       <NotifficationContainer>
-        <Notiffication>No contact with such name found</Notiffication>
+        <Notiffication>No contacts with such name found</Notiffication>
       </NotifficationContainer>
     );
   }

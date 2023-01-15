@@ -12,9 +12,13 @@ const Container = styled.div`
   border: 3px solid white;
   margin-left: auto;
   margin-right: auto;
-  max-width: 530px;
+  max-width: 310px;
   background-color: #e7473c;
   border-radius: 10px;
+
+  @media (min-width: 600px) {
+    max-width: 530px;
+  }
 `;
 
 export const Notif = () => {

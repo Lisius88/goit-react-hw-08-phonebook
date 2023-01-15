@@ -69,11 +69,15 @@ export const Notiffication = styled.p`
 export const NotifficationContainer = styled.div`
   border: 3px solid white;
   margin-right: auto;
-  margin-left: 15px;
+  margin-left: auto;
   margin-top: 30px;
-  max-width: 505px;
+  max-width: 306px;
   background-color: #e7473c;
   border-radius: 8px;
+
+  @media (min-width: 600px) {
+    max-width: 505px;
+  }
 `;
 
 export const Numb = styled.a`
