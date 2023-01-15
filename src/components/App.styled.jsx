@@ -15,3 +15,12 @@ export const Title = styled.h1`
   text-transform: uppercase;
   font-size: 35px;
 `;
+
+export const Flex = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+
+  @media (min-width: 600px) {
+    flex-direction: column;
+  }
+`;

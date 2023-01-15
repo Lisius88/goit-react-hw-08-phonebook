@@ -8,14 +8,15 @@ export const List = styled.ul`
   margin-bottom: 30px;
 
   @media (min-width: 600px) {
-    justify-content: flex-start;
+    justify-content: center;
+    margin-left: -15px;
   }
 `;
 
 export const Item = styled.li`
   padding: 0;
   margin: 0;
-  width: 295px;
+  width: 294px;
   margin-left: 0;
   display: flex;
   justify-content: space-between;

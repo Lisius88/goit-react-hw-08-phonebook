@@ -6,9 +6,10 @@ export const Filterlabel = styled.div`
   width: 310px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 30px;
+  margin-bottom: 0px;
   @media (min-width: 600px) {
     width: 505px;
+    margin-bottom: 30px;
   }
 `;
 

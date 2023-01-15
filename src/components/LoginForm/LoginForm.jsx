@@ -48,7 +48,7 @@ export const LoginForm = () => {
 
   return (
     <LoginStyledContainer>
-      <FormContent onSubmit={handleSubmit(submit)}>
+      <FormContent onSubmit={handleSubmit(submit)} autoComplete="off">
         <Label>
           Email <Input {...register('email')} placeholder="qwerty@gmail.com" />
           <Validation>{errors.email?.message}</Validation>

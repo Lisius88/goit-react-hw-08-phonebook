@@ -56,7 +56,7 @@ export const RegisterForm = () => {
 
   return (
     <LoginStyledContainer>
-      <FormContent onSubmit={handleSubmit(submit)}>
+      <FormContent onSubmit={handleSubmit(submit)} autoComplete="off">
         <Label>
           Username <Input {...register('name')} placeholder="Ace Ventura" />
           <Validation>{errors.name?.message}</Validation>

@@ -49,7 +49,7 @@ export const Form = () => {
   };
 
   return (
-    <FormContent onSubmit={handleSubmit(submit)}>
+    <FormContent onSubmit={handleSubmit(submit)} autoComplete="off">
       <Label>
         Name <Input {...register('name')} placeholder="Eddie van Halen" />
         <Validation>{errors.name?.message}</Validation>
